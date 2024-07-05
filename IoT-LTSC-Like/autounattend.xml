@@ -8,6 +8,15 @@
 	<!--Credit to Chris Titus Tech as this file contains Tweaks from The Windows Utility https://github.com/ChrisTitusTech/winutil | https://christitus.com/windows-tool/ | https://www.youtube.com/@ChrisTitusTech/ -->
 	<settings pass="offlineServicing"></settings>
 	<settings pass="windowsPE">
+		<component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+			<SetupUILanguage>
+				<UILanguage>en-GB</UILanguage>
+			</SetupUILanguage>
+			<InputLocale>0809:00000809</InputLocale>
+			<SystemLocale>en-GB</SystemLocale>
+			<UILanguage>en-GB</UILanguage>
+			<UserLocale>en-GB</UserLocale>
+		</component>
 		<component name="Microsoft-Windows-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
 			<UserData>
 				<AcceptEula>true</AcceptEula>
@@ -111,6 +120,12 @@
 	<settings pass="auditSystem"></settings>
 	<settings pass="auditUser"></settings>
 	<settings pass="oobeSystem">
+		<component name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+			<InputLocale>0809:00000809</InputLocale>
+			<SystemLocale>en-GB</SystemLocale>
+			<UILanguage>en-GB</UILanguage>
+			<UserLocale>en-GB</UserLocale>
+		</component>
 		<component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
 			<OOBE>
 				<HideEULAPage>true</HideEULAPage>
@@ -166,8 +181,6 @@
   'Microsoft.MicrosoftOfficeHub';
   'Microsoft.Office.OneNote';
   'Microsoft.OutlookForWindows';
-  'Microsoft.Paint';
-  'Microsoft.MSPaint';
   'Microsoft.People';
   'Microsoft.Windows.Photos';
   'Microsoft.PowerAutomateDesktop';
@@ -247,7 +260,7 @@ reg.exe add "HKLM\SYSTEM\CurrentControlSet\Control\FileSystem" /v LongPathsEnabl
 reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Dsh" /v AllowNewsAndInterests /t REG_DWORD /d 0 /f
 
 :: Disables Windows Consumer Features Like App Promotions etc.
-reg.exe add "HKLM\Software\Policies\Microsoft\Windows\CloudContent" /v "DisableWindowsConsumerFeatures" /t REG_DWORD /d 0 /f
+reg.exe add "HKLM\Software\Policies\Microsoft\Windows\CloudContent" /v "DisableWindowsConsumerFeatures" /t REG_DWORD /d 1 /f
 
 :: Disables Bitlocker Auto Encryption on Windows 11 24H2 and Onwards
 reg.exe add "HKLM\SYSTEM\CurrentControlSet\Control\BitLocker" /v "PreventDeviceEncryption" /t REG_DWORD /d 1 /f
@@ -307,12 +320,6 @@ reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\DriverSearching" /v 
 reg.exe add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v SystemResponsiveness /t REG_DWORD /d 0 /f
 reg.exe add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v NetworkThrottlingIndex /t REG_DWORD /d 4294967295 /f
 
-:: Controls whether the memory page file is cleared at shutdown. Value 0 means it will not be cleared, speeding up shutdown. 
-reg.exe add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v ClearPageFileAtShutdown /t REG_DWORD /d 0 /f
-
-:: Enables NDU (Network Diagnostic Usage) Service on Startup
-reg.exe add "HKLM\SYSTEM\ControlSet001\Services\Ndu" /v Start /t REG_DWORD /d 2 /f
-
 :: Increases IRP stack size to 30 for the LanmanServer service to Improve Network Performance and Stability
 reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" /v IRPStackSize /t REG_DWORD /d 30 /f
 
@@ -337,9 +344,6 @@ reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Paramet
 
 :: Disable Xbox GameDVR
 reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\GameDVR" /v AllowGameDVR /t REG_DWORD /d 0 /f
-
-:: Disable Tablet Mode
-reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell" /v TabletMode /t REG_DWORD /d 0 /f
 
 :: Always go to desktop mode on sign-in
 reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell" /v SignInMode /t REG_DWORD /d 1 /f
@@ -375,10 +379,7 @@ reg.exe delete "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskC
 :: Deleting QueueReporting
 reg.exe delete "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tasks\{E3176A65-4E44-4ED3-AA73-3283660ACB9C}" /f
 
-:: Block Automatic Upgrade from Windows 10 22H2 to Windows 11 Although Manual Upgrade is Still Allowed - Credit CyberCPU Tech
-reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "TargetReleaseVersion" /t REG_DWORD /d 1 /f
-reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "TargetReleaseVersionInfo" /t REG_SZ /d "22H2" /f
-reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "ProductVersion" /t REG_SZ /d "Windows 10" /f
+
 		</File>
 		<!--Powershell Script to Run Various Tweaks, Most of These are from the Chris Titus Tech Windows Utility (Credit:https://christitus.com/windows-tool/)-->
 		<File path="C:\Windows\Setup\Scripts\wintweaks.ps1">
@@ -670,14 +671,12 @@ Set-Service -Name 'WarpJITSvc' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'WbioSrvc' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'Wcmsvc' -StartupType Automatic -ErrorAction Continue
 Set-Service -Name 'WcsPlugInService' -StartupType Manual -ErrorAction Continue
-Set-Service -Name 'WdNisSvc' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'WdiServiceHost' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'WdiSystemHost' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'WebClient' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'Wecsvc' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'WerSvc' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'WiaRpc' -StartupType Manual -ErrorAction Continue
-Set-Service -Name 'WinDefend' -StartupType Automatic -ErrorAction Continue
 Set-Service -Name 'WinHttpAutoProxySvc' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'WinRM' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'Winmgmt' -StartupType Automatic -ErrorAction Continue
@@ -690,7 +689,6 @@ Set-Service -Name 'XblAuthManager' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'XblGameSave' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'XboxGipSvc' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'XboxNetApiSvc' -StartupType Manual -ErrorAction Continue
-Set-Service -Name 'autotimesvc' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'bthserv' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'camsvc' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'cbdhsvc_*' -StartupType Manual -ErrorAction Continue
@@ -700,9 +698,6 @@ Set-Service -Name 'defragsvc' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'diagnosticshub.standardcollector.service' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'diagsvc' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'dmwappushservice' -StartupType Manual -ErrorAction Continue
-Set-Service -Name 'dot3svc' -StartupType Manual -ErrorAction Continue
-Set-Service -Name 'edgeupdate' -StartupType Manual -ErrorAction Continue
-Set-Service -Name 'edgeupdatem' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'embeddedmode' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'fdPHost' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'fhsvc' -StartupType Manual -ErrorAction Continue
@@ -730,7 +725,6 @@ Set-Service -Name 'ssh-agent' -StartupType Disabled -ErrorAction Continue
 Set-Service -Name 'svsvc' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'swprv' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'tiledatamodelsvc' -StartupType Automatic -ErrorAction Continue
-Set-Service -Name 'tzautoupdate' -StartupType Disabled -ErrorAction Continue
 Set-Service -Name 'uhssvc' -StartupType Disabled -ErrorAction Continue
 Set-Service -Name 'upnphost' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'vds' -StartupType Manual -ErrorAction Continue
@@ -746,16 +740,12 @@ Set-Service -Name 'vmicvss' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'vmvss' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'wbengine' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'wcncsvc' -StartupType Manual -ErrorAction Continue
-Set-Service -Name 'webthreatdefsvc' -StartupType Manual -ErrorAction Continue
-Set-Service -Name 'webthreatdefusersvc_*' -StartupType Automatic -ErrorAction Continue
 Set-Service -Name 'wercplsupport' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'wisvc' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'wlidsvc' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'wlpasvc' -StartupType Manual -ErrorAction Continue
 Set-Service -Name 'wmiApSrv' -StartupType Manual -ErrorAction Continue
-Set-Service -Name 'workfolderssvc' -StartupType Manual -ErrorAction Continue
-Set-Service -Name 'wuauserv' -StartupType Manual -ErrorAction Continue
-Set-Service -Name 'wudfsvc' -StartupType Manual -ErrorAction Continue]]>
+Set-Service -Name 'workfolderssvc' -StartupType Manual -ErrorAction Continue]]>
 		</File>
 		<!--Default User Registry Entries - This Sets Features for the Default User-->
 		<File path="C:\Windows\Setup\Scripts\defaultuser.cmd">
@@ -812,9 +802,6 @@ reg.exe add "HKU\DefaultUser\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds" /v
 reg.exe add "HKU\DefaultUser\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds" /v ShellFeedsEnabled /t REG_DWORD /d 0 /f
 reg.exe add "HKU\DefaultUser\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds" /v EnableFeeds /t REG_DWORD /d 0 /f
 
-:: Hides or Removes Notifications
-reg.exe add "HKU\DefaultUser\SOFTWARE\Microsoft\Windows\CurrentVersion\PushNotifications" /v ToastEnabled /t REG_DWORD /d 0 /f
-
 :: Disables User Account Sync
 reg.exe add "HKU\DefaultUser\SOFTWARE\Microsoft\Windows\CurrentVersion\Privacy" /v SettingSyncEnabled /t REG_DWORD /d 0 /f
 
@@ -847,9 +834,6 @@ reg.exe add "HKU\DefaultUser\SOFTWARE\Microsoft\Windows\CurrentVersion\AppDiagno
 
 :: Disables Delivery Optimization
 reg.exe add "HKU\DefaultUser\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization" /v DODownloadMode /t REG_DWORD /d 0 /f
-
-:: Disables Tablet Mode
-reg.exe add "HKU\DefaultUser\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell" /v TabletMode /t REG_DWORD /d 0 /f
 
 :: Disables Use Sign-In Info for User Account
 reg.exe add "HKU\DefaultUser\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication" /v UseSignInInfo /t REG_DWORD /d 0 /f
@@ -897,7 +881,7 @@ reg.exe add "HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\Explorer\
 reg.exe add "HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarMn /t REG_DWORD /d 0 /f
 reg.exe add "HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarDa /t REG_DWORD /d 0 /f
 reg.exe add "HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" /v VisualFXSetting /t REG_DWORD /d 3 /f
-reg.exe add "HKU\DefaultUser\Software\Microsoft\Windows\DWM" /v EnableAeroPeek /t REG_DWORD /d 0 /f
+reg.exe add "HKU\DefaultUser\Software\Microsoft\Windows\DWM" /v EnableAeroPeek /t REG_DWORD /d 1 /f
 
 :: Set Registry Keys to Enable End Task With Right Click
 reg.exe add "HKU\DefaultUser\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarDeveloperSettings /t REG_DWORD /d 1 /f
@@ -947,8 +931,6 @@ reg.exe add "HKU\DefaultUser\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Pe
 :: WINDOWS 10 TASKBAR CUSTOMIZATIONS
 :: Makes Taskbar Transparent in Windows 10
 reg.exe add "HKU\DefaultUser\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "TaskbarAcrylicOpacity" /t REG_DWORD /d 0 /f
-:: Makes Taskbar Small in Windows 10
-reg.exe add "HKU\DefaultUser\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "TaskbarSmallIcons" /t REG_DWORD /d 1 /f
 
 :: Restore Windows Photo Viewer and Set as Default Program for Image Files
 :: Restore Windows Photo Viewer
@@ -1057,8 +1039,6 @@ reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds" 
 reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds" /v ShellFeedsEnabled /t REG_DWORD /d 0 /f
 reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds" /v EnableFeeds /t REG_DWORD /d 0 /f
 
-:: Hides or Removes Notifications
-reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\PushNotifications" /v ToastEnabled /t REG_DWORD /d 0 /f
 
 :: Disables User Account Sync
 reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Privacy" /v SettingSyncEnabled /t REG_DWORD /d 0 /f
@@ -1092,9 +1072,6 @@ reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\AppDiag
 
 :: Disables Delivery Optimization
 reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization" /v DODownloadMode /t REG_DWORD /d 0 /f
-
-:: Disables Tablet Mode
-reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell" /v TabletMode /t REG_DWORD /d 0 /f
 
 :: Disables Use Sign-In Info for User Account
 reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication" /v UseSignInInfo /t REG_DWORD /d 0 /f
@@ -1142,15 +1119,11 @@ reg.exe add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explore
 reg.exe add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarMn /t REG_DWORD /d 0 /f
 reg.exe add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarDa /t REG_DWORD /d 0 /f
 reg.exe add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" /v VisualFXSetting /t REG_DWORD /d 3 /f
-reg.exe add "HKEY_CURRENT_USER\Software\Microsoft\Windows\DWM" /v EnableAeroPeek /t REG_DWORD /d 0 /f
 
 :: Set Registry Keys to Enable End Task With Right Click
 reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarDeveloperSettings /t REG_DWORD /d 1 /f
 reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarEndTask /t REG_DWORD /d 1 /f
 
-:: Disables Notification Tray and Calendar
-reg.exe add "HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Explorer" /v DisableNotificationCenter /t REG_DWORD /d 1 /f
-reg.exe add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\PushNotifications" /v ToastEnabled /t REG_DWORD /d 0 /f
 
 :: Set Classic Right-Click Menu for Windows 11
 reg.exe add "HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /ve /t REG_SZ /d "" /f
@@ -1192,8 +1165,6 @@ reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\
 :: WINDOWS 10 TASKBAR CUSTOMIZATIONS
 :: Makes Taskbar Transparent in Windows 10
 reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "TaskbarAcrylicOpacity" /t REG_DWORD /d 0 /f
-:: Makes Taskbar Small in Windows 10
-reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "TaskbarSmallIcons" /t REG_DWORD /d 1 /f
 
 :: Don't Update Last Access Time Stamp - This Can Improve File System Performance
 fsutil.exe behavior set disableLastAccess 1
