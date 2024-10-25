@@ -141,21 +141,16 @@
         </RunSynchronousCommand>
         <RunSynchronousCommand wcm:action="add">
           <Order>5</Order>
-          <Description>Adds Items to Right-Click Context Menu</Description>
-          <Path>cmd.exe /c "reg.exe import "C:\Windows\Setup\Scripts\contextmenu.reg" &gt;&gt;"C:\Windows\Setup\Scripts\contextmenu.log" 2&gt;&amp;1"</Path>
-        </RunSynchronousCommand>
-        <RunSynchronousCommand wcm:action="add">
-          <Order>6</Order>
           <Description>Loads the Default User Registry Hive so Changes Can be Made to It</Description>
           <Path>reg.exe load "HKU\DefaultUser" "C:\Users\Default\NTUSER.DAT"</Path>
         </RunSynchronousCommand>
         <RunSynchronousCommand wcm:action="add">
-          <Order>7</Order>
+          <Order>6</Order>
           <Description>Registry Entry to Execute the HKCU Registry Entry Script the First Time a New User Logs In</Description>
           <Path>reg.exe add "HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\Runonce" /v "currentuser" /t REG_SZ /d "C:\Windows\Setup\Scripts\currentuser.cmd" /f</Path>
         </RunSynchronousCommand>
         <RunSynchronousCommand wcm:action="add">
-          <Order>8</Order>
+          <Order>7</Order>
           <Description>Unloads the Default User Registry Hive</Description>
           <Path>reg.exe unload "HKU\DefaultUser"</Path>
         </RunSynchronousCommand>
@@ -185,21 +180,16 @@
         </RunSynchronousCommand>
         <RunSynchronousCommand wcm:action="add">
           <Order>5</Order>
-          <Description>Adds Items to Right-Click Context Menu</Description>
-          <Path>cmd.exe /c "reg.exe import "C:\Windows\Setup\Scripts\contextmenu.reg" &gt;&gt;"C:\Windows\Setup\Scripts\contextmenu.log" 2&gt;&amp;1"</Path>
-        </RunSynchronousCommand>
-        <RunSynchronousCommand wcm:action="add">
-          <Order>6</Order>
           <Description>Loads the Default User Registry Hive so Changes Can be Made to It</Description>
           <Path>reg.exe load "HKU\DefaultUser" "C:\Users\Default\NTUSER.DAT"</Path>
         </RunSynchronousCommand>
         <RunSynchronousCommand wcm:action="add">
-          <Order>7</Order>
+          <Order>6</Order>
           <Description>Registry Entry to Execute the HKCU Registry Entry Script the First Time a New User Logs In</Description>
           <Path>reg.exe add "HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\Runonce" /v "currentuser" /t REG_SZ /d "C:\Windows\Setup\Scripts\currentuser.cmd" /f</Path>
         </RunSynchronousCommand>
         <RunSynchronousCommand wcm:action="add">
-          <Order>8</Order>
+          <Order>7</Order>
           <Description>Unloads the Default User Registry Hive</Description>
           <Path>reg.exe unload "HKU\DefaultUser"</Path>
         </RunSynchronousCommand>
@@ -229,21 +219,16 @@
         </RunSynchronousCommand>
         <RunSynchronousCommand wcm:action="add">
           <Order>5</Order>
-          <Description>Adds Items to Right-Click Context Menu</Description>
-          <Path>cmd.exe /c "reg.exe import "C:\Windows\Setup\Scripts\contextmenu.reg" &gt;&gt;"C:\Windows\Setup\Scripts\contextmenu.log" 2&gt;&amp;1"</Path>
-        </RunSynchronousCommand>
-        <RunSynchronousCommand wcm:action="add">
-          <Order>6</Order>
           <Description>Loads the Default User Registry Hive so Changes Can be Made to It</Description>
           <Path>reg.exe load "HKU\DefaultUser" "C:\Users\Default\NTUSER.DAT"</Path>
         </RunSynchronousCommand>
         <RunSynchronousCommand wcm:action="add">
-          <Order>7</Order>
+          <Order>6</Order>
           <Description>Registry Entry to Execute the HKCU Registry Entry Script the First Time a New User Logs In</Description>
           <Path>reg.exe add "HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\Runonce" /v "currentuser" /t REG_SZ /d "C:\Windows\Setup\Scripts\currentuser.cmd" /f</Path>
         </RunSynchronousCommand>
         <RunSynchronousCommand wcm:action="add">
-          <Order>8</Order>
+          <Order>7</Order>
           <Description>Unloads the Default User Registry Hive</Description>
           <Path>reg.exe unload "HKU\DefaultUser"</Path>
         </RunSynchronousCommand>
@@ -654,7 +639,7 @@ Where-Object -FilterScript {
   Set-Service -Name 'VSS' -StartupType Manual -ErrorAction Continue
   Set-Service -Name 'VacSvc' -StartupType Manual -ErrorAction Continue
   Set-Service -Name 'VaultSvc' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'W32Time' -StartupType Manual -ErrorAction Continue
+  Set-Service -Name 'W32Time' -StartupType AutomaticDelayedStart -ErrorAction Continue
   Set-Service -Name 'WEPHOSTSVC' -StartupType Manual -ErrorAction Continue
   Set-Service -Name 'WFDSConMgrSvc' -StartupType Manual -ErrorAction Continue
   Set-Service -Name 'WMPNetworkSvc' -StartupType Manual -ErrorAction Continue
@@ -699,8 +684,8 @@ Where-Object -FilterScript {
   Set-Service -Name 'diagsvc' -StartupType Manual -ErrorAction Continue
   Set-Service -Name 'dmwappushservice' -StartupType Manual -ErrorAction Continue
   Set-Service -Name 'dot3svc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'edgeupdate' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'edgeupdatem' -StartupType Manual -ErrorAction Continue
+  Set-Service -Name 'edgeupdate' -StartupType AutomaticDelayedStart -ErrorAction Continue
+  Set-Service -Name 'edgeupdatem' -StartupType AutomaticDelayedStart -ErrorAction Continue
   Set-Service -Name 'embeddedmode' -StartupType Manual -ErrorAction Continue
   Set-Service -Name 'fdPHost' -StartupType Manual -ErrorAction Continue
   Set-Service -Name 'fhsvc' -StartupType Manual -ErrorAction Continue
@@ -744,7 +729,7 @@ Where-Object -FilterScript {
   Set-Service -Name 'vmvss' -StartupType Manual -ErrorAction Continue
   Set-Service -Name 'wbengine' -StartupType Manual -ErrorAction Continue
   Set-Service -Name 'wcncsvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'webthreatdefsvc' -StartupType Manual -ErrorAction Continue
+  Set-Service -Name 'webthreatdefsvc' -StartupType Automatic -ErrorAction Continue
   Set-Service -Name 'webthreatdefusersvc_*' -StartupType Automatic -ErrorAction Continue
   Set-Service -Name 'wercplsupport' -StartupType Manual -ErrorAction Continue
   Set-Service -Name 'wisvc' -StartupType Manual -ErrorAction Continue
@@ -752,7 +737,7 @@ Where-Object -FilterScript {
   Set-Service -Name 'wlpasvc' -StartupType Manual -ErrorAction Continue
   Set-Service -Name 'wmiApSrv' -StartupType Manual -ErrorAction Continue
   Set-Service -Name 'workfolderssvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'wuauserv' -StartupType Manual -ErrorAction Continue
+  Set-Service -Name 'wuauserv' -StartupType AutomaticDelayedStart -ErrorAction Continue
   Set-Service -Name 'wudfsvc' -StartupType Manual -ErrorAction Continue
   
   Stop-Transcript]]>
@@ -809,11 +794,10 @@ reg.exe add "HKLM\SYSTEM\CurrentControlSet\Control\BitLocker" /v "PreventDeviceE
 reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\EnhancedStorageDevices" /v TCGSecurityActivationDisabled /t REG_DWORD /d 1 /f
 
 :: Sets Windows Update to Only Install Security Updates and Delay Other Updates for 2 Years
-reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v AUOptions /t REG_DWORD /d 3 /f
+reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v AUOptions /t REG_DWORD /d 5 /f
 reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v DeferFeatureUpdates /t REG_DWORD /d 1 /f
 reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v DeferFeatureUpdatesPeriodInDays /t REG_DWORD /d 365 /f
-reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v DeferQualityUpdates /t REG_DWORD /d 1 /f
-reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v DeferQualityUpdatesPeriodInDays /t REG_DWORD /d 365 /f
+reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v DeferQualityUpdates /t REG_DWORD /d 0 /f
 
 :: Disables Cortana
 reg.exe add "HKLM\Software\Policies\Microsoft\Windows\Windows Search" /v AllowCortana /t REG_DWORD /d 0 /f
