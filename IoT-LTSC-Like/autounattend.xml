@@ -382,9 +382,6 @@ Where-Object -FilterScript {
   $icaclsCommand = "icacls `"$autoLoggerDir`" /deny SYSTEM:`"(OI)(CI)F`""
   Invoke-Expression $icaclsCommand | Out-Null
   
-  # Disable Defender Auto Sample Submission
-  Set-MpPreference -SubmitSamplesConsent 2 -ErrorAction Continue | Out-Null
-  
   # Removes OneDrive
   Remove-Item "C:\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\OneDrive.lnk" -ErrorAction Continue
   Remove-Item "C:\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\OneDrive.exe" -ErrorAction Continue
