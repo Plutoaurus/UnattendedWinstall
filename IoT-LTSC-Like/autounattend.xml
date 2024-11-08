@@ -244,7 +244,7 @@
         <HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
         <HideOnlineAccountScreens>true</HideOnlineAccountScreens>
         <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
-        <NetworkLocation>Work</NetworkLocation>
+        <NetworkLocation>Home</NetworkLocation>
         <ProtectYourPC>3</ProtectYourPC>
       </OOBE>
       <FirstLogonCommands>       
@@ -256,7 +256,7 @@
         <HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
         <HideOnlineAccountScreens>true</HideOnlineAccountScreens>
         <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
-        <NetworkLocation>Work</NetworkLocation>
+        <NetworkLocation>Home</NetworkLocation>
         <ProtectYourPC>3</ProtectYourPC>
       </OOBE>
       <FirstLogonCommands>       
@@ -268,7 +268,7 @@
         <HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
         <HideOnlineAccountScreens>true</HideOnlineAccountScreens>
         <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
-        <NetworkLocation>Work</NetworkLocation>
+        <NetworkLocation>Home</NetworkLocation>
         <ProtectYourPC>3</ProtectYourPC>
       </OOBE>
       <FirstLogonCommands>       
@@ -453,290 +453,6 @@ Where-Object -FilterScript {
   # Set the Ultimate Performance power plan as active
   powercfg -setactive e9a42b02-d5df-448d-aa00-03f14749eb61
   
-  # Set Services to Manual
-  Write-Output 'Set Services to Manual: Turns a bunch of system services to manual that do not need to be running all the time.'
-  Set-Service -Name 'AJRouter' -StartupType Disabled -ErrorAction Continue
-  Set-Service -Name 'ALG' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'AppIDSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'AppMgmt' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'AppReadiness' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'AppVClient' -StartupType Disabled -ErrorAction Continue
-  Set-Service -Name 'AppXSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'Appinfo' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'AssignedAccessManagerSvc' -StartupType Disabled -ErrorAction Continue
-  Set-Service -Name 'AudioEndpointBuilder' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'AudioSrv' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'Audiosrv' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'AxInstSV' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'BDESVC' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'BFE' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'BITS' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'BTAGService' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'BcastDVRUserService_*' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'BrokerInfrastructure' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'Browser' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'BthAvctpSvc' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'BthHFSrv' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'CDPSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'CDPUserSvc_*' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'COMSysApp' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'CaptureService_*' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'CertPropSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'ClipSVC' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'ConsentUxUserSvc_*' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'CoreMessagingRegistrar' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'CredentialEnrollmentManagerUserSvc_*' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'CryptSvc' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'CscService' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'DPS' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'DcomLaunch' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'DcpSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'DevQueryBroker' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'DeviceAssociationBrokerSvc_*' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'DeviceAssociationService' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'DeviceInstall' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'DevicePickerUserSvc_*' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'DevicesFlowUserSvc_*' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'Dhcp' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'DiagTrack' -StartupType Disabled -ErrorAction Continue
-  Set-Service -Name 'DialogBlockingService' -StartupType Disabled -ErrorAction Continue
-  Set-Service -Name 'DispBrokerDesktopSvc' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'DisplayEnhancementService' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'DmEnrollmentSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'Dnscache' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'DoSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'DsSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'DsmSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'DusmSvc' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'EFS' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'EapHost' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'EntAppSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'EventLog' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'EventSystem' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'FDResPub' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'Fax' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'FontCache' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'FrameServer' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'FrameServerMonitor' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'GraphicsPerfSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'HomeGroupListener' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'HomeGroupProvider' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'HvHost' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'IEEtwCollectorService' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'IKEEXT' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'InstallService' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'InventorySvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'IpxlatCfgSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'KeyIso' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'KtmRm' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'LSM' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'LanmanServer' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'LanmanWorkstation' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'LicenseManager' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'LxpSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'MSDTC' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'MSiSCSI' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'MapsBroker' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'McpManagementService' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'MessagingService_*' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'MicrosoftEdgeElevationService' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'MixedRealityOpenXRSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'MpsSvc' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'MsKeyboardFilter' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'NPSMSvc_*' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'NaturalAuthentication' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'NcaSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'NcbService' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'NcdAutoSetup' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'NetSetupSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'NetTcpPortSharing' -StartupType Disabled -ErrorAction Continue
-  Set-Service -Name 'Netlogon' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'Netman' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'NgcCtnrSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'NgcSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'NlaSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'OneSyncSvc_*' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'P9RdrService_*' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'PNRPAutoReg' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'PNRPsvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'PcaSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'PeerDistSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'PenService_*' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'PerfHost' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'PhoneSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'PimIndexMaintenanceSvc_*' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'PlugPlay' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'PolicyAgent' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'Power' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'PrintNotify' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'PrintWorkflowUserSvc_*' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'ProfSvc' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'PushToInstall' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'QWAVE' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'RasAuto' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'RasMan' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'RemoteAccess' -StartupType Disabled -ErrorAction Continue
-  Set-Service -Name 'RemoteRegistry' -StartupType Disabled -ErrorAction Continue
-  Set-Service -Name 'RetailDemo' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'RmSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'RpcEptMapper' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'RpcLocator' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'RpcSs' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'SCPolicySvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'SCardSvr' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'SDRSVC' -StartupType Manual -ErrorAction Continue 
-  Set-Service -Name 'SEMgrSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'SENS' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'SNMPTRAP' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'SNMPTrap' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'SSDPSRV' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'SamSs' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'ScDeviceEnum' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'Schedule' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'SecurityHealthService' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'Sense' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'SensorDataService' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'SensorService' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'SensrSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'SessionEnv' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'SgrmBroker' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'SharedAccess' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'SharedRealitySvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'ShellHWDetection' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'SmsRouter' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'Spooler' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'SstpSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'StateRepository' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'StiSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'StorSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'SysMain' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'SystemEventsBroker' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'TabletInputService' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'TapiSrv' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'TermService' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'TextInputManagementService' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'Themes' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'TieringEngineService' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'TimeBroker' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'TimeBrokerSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'TokenBroker' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'TrkWks' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'TroubleshootingSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'TrustedInstaller' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'UI0Detect' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'UdkUserSvc_*' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'UevAgentService' -StartupType Disabled -ErrorAction Continue
-  Set-Service -Name 'UmRdpService' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'UnistoreSvc_*' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'UserDataSvc_*' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'UserManager' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'UsoSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'VGAuthService' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'VMTools' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'VSS' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'VacSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'VaultSvc' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'W32Time' -StartupType AutomaticDelayedStart -ErrorAction Continue
-  Set-Service -Name 'WEPHOSTSVC' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'WFDSConMgrSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'WMPNetworkSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'WManSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'WPDBusEnum' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'WSService' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'WSearch' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'WaaSMedicSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'WalletService' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'WarpJITSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'WbioSrvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'Wcmsvc' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'WcsPlugInService' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'WdNisSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'WdiServiceHost' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'WdiSystemHost' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'WebClient' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'Wecsvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'WerSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'WiaRpc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'WinDefend' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'WinHttpAutoProxySvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'WinRM' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'Winmgmt' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'WlanSvc' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'WpcMonSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'WpnService' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'WpnUserService_*' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'WwanSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'XblAuthManager' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'XblGameSave' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'XboxGipSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'XboxNetApiSvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'autotimesvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'bthserv' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'camsvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'cbdhsvc_*' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'cloudidsvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'dcsvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'defragsvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'diagnosticshub.standardcollector.service' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'diagsvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'dmwappushservice' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'dot3svc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'edgeupdate' -StartupType AutomaticDelayedStart -ErrorAction Continue
-  Set-Service -Name 'edgeupdatem' -StartupType AutomaticDelayedStart -ErrorAction Continue
-  Set-Service -Name 'embeddedmode' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'fdPHost' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'fhsvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'gpsvc' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'hidserv' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'icssvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'iphlpsvc' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'lfsvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'lltdsvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'lmhosts' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'mpssvc' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'msiserver' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'netprofm' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'nsi' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'p2pimsvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'p2psvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'perceptionsimulation' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'pla' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'seclogon' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'shpamsvc' -StartupType Disabled -ErrorAction Continue
-  Set-Service -Name 'smphost' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'spectrum' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'sppsvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'ssh-agent' -StartupType Disabled -ErrorAction Continue
-  Set-Service -Name 'svsvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'swprv' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'tiledatamodelsvc' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'tzautoupdate' -StartupType Disabled -ErrorAction Continue
-  Set-Service -Name 'uhssvc' -StartupType Disabled -ErrorAction Continue
-  Set-Service -Name 'upnphost' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'vds' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'vm3dservice' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'vmicguestinterface' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'vmicheartbeat' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'vmickvpexchange' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'vmicrdv' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'vmicshutdown' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'vmictimesync' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'vmicvmsession' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'vmicvss' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'vmvss' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'wbengine' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'wcncsvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'webthreatdefsvc' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'webthreatdefusersvc_*' -StartupType Automatic -ErrorAction Continue
-  Set-Service -Name 'wercplsupport' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'wisvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'wlidsvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'wlpasvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'wmiApSrv' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'workfolderssvc' -StartupType Manual -ErrorAction Continue
-  Set-Service -Name 'wuauserv' -StartupType AutomaticDelayedStart -ErrorAction Continue
-  Set-Service -Name 'wudfsvc' -StartupType Manual -ErrorAction Continue
-  
   Stop-Transcript]]>
     </File>
     <!--Local Machine Registry Entries - This Sets Features for the Local Machine-->
@@ -785,16 +501,6 @@ reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Dsh" /v AllowNewsAndInterests /t R
 
 :: Disables Windows Consumer Features Like App Promotions etc.
 reg.exe add "HKLM\Software\Policies\Microsoft\Windows\CloudContent" /v "DisableWindowsConsumerFeatures" /t REG_DWORD /d 0 /f
-
-:: Disables Bitlocker Auto Encryption on Windows 11 24H2 and Onwards
-reg.exe add "HKLM\SYSTEM\CurrentControlSet\Control\BitLocker" /v "PreventDeviceEncryption" /t REG_DWORD /d 1 /f
-reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\EnhancedStorageDevices" /v TCGSecurityActivationDisabled /t REG_DWORD /d 1 /f
-
-:: Sets Windows Update to Only Install Security Updates and Delay Other Updates for 2 Years
-reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v AUOptions /t REG_DWORD /d 5 /f
-reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v DeferFeatureUpdates /t REG_DWORD /d 1 /f
-reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v DeferFeatureUpdatesPeriodInDays /t REG_DWORD /d 365 /f
-reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v DeferQualityUpdates /t REG_DWORD /d 0 /f
 
 :: Disables Cortana
 reg.exe add "HKLM\Software\Policies\Microsoft\Windows\Windows Search" /v AllowCortana /t REG_DWORD /d 0 /f
@@ -867,9 +573,6 @@ reg.exe delete "HKLM\SOFTWARE\Policies\Microsoft\Edge" /f
 reg.exe add "HKLM\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting" /v Value /t REG_DWORD /d 0 /f
 reg.exe add "HKLM\Software\Microsoft\PolicyManager\default\WiFi\AllowAutoConnectToWiFiSenseHotspots" /v Value /t REG_DWORD /d 0 /f
 
-:: Disables Storage Sense
-reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy" /v 01 /t REG_DWORD /d 0 /f
-
 :: Disable Xbox GameDVR
 reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\GameDVR" /v AllowGameDVR /t REG_DWORD /d 0 /f
 
@@ -910,11 +613,6 @@ reg.exe delete "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskC
 :: Deleting QueueReporting
 reg.exe delete "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tasks\{E3176A65-4E44-4ED3-AA73-3283660ACB9C}" /f
 
-:: Block Automatic Upgrade from Windows 10 22H2 to Windows 11 Although Manual Upgrade is Still Allowed - Credit CyberCPU Tech
-reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "TargetReleaseVersion" /t REG_DWORD /d 1 /f
-reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "TargetReleaseVersionInfo" /t REG_SZ /d "22H2" /f
-reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "ProductVersion" /t REG_SZ /d "Windows 10" /f
-
 :: Blocks the “Allow my organization to manage my device” and “No, sign in to this app only” pop-up message.
 reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WorkplaceJoin" /v BlockAADWorkplaceJoin /t REG_DWORD /d 1 /f]]>
     </File>
@@ -922,50 +620,7 @@ reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WorkplaceJoin" /v BlockAAD
     <File path="C:\Windows\Setup\Scripts\contextmenu.reg">
       <![CDATA[
     Windows Registry Editor Version 5.00
-    
-    ; Adds "Take Ownership" to the Right Click Context Menu
-    ; Created by: Shawn Brink
-    ; Created on: September 6, 2021
-    ; Updated on: January 7, 2024
-    ; Tutorial: https://www.elevenforum.com/t/add-take-ownership-to-context-menu-in-windows-11.1230/
-                
-    [-HKEY_CLASSES_ROOT\*\shell\TakeOwnership]
-    [-HKEY_CLASSES_ROOT\*\shell\runas]
-          
-    [HKEY_CLASSES_ROOT\*\shell\TakeOwnership]
-    @="Take Ownership"
-    "Extended"=-
-    "HasLUAShield"=""
-    "NoWorkingDirectory"=""
-    "NeverDefault"=""
-          
-    [HKEY_CLASSES_ROOT\*\shell\TakeOwnership\command]
-    @="powershell -windowstyle hidden -command \"Start-Process cmd -ArgumentList '/c takeown /f \\\"%1\\\" && icacls \\\"%1\\\" /grant *S-1-3-4:F /t /c /l & pause' -Verb runAs\""
-    "IsolatedCommand"= "powershell -windowstyle hidden -command \"Start-Process cmd -ArgumentList '/c takeown /f \\\"%1\\\" && icacls \\\"%1\\\" /grant *S-1-3-4:F /t /c /l & pause' -Verb runAs\""
-               
-    [HKEY_CLASSES_ROOT\Directory\shell\TakeOwnership]
-    @="Take Ownership"
-    "AppliesTo"="NOT (System.ItemPathDisplay:=\"C:\\Users\" OR System.ItemPathDisplay:=\"C:\\ProgramData\" OR System.ItemPathDisplay:=\"C:\\Windows\" OR System.ItemPathDisplay:=\"C:\\Windows\\System32\" OR System.ItemPathDisplay:=\"C:\\Program Files\" OR System.ItemPathDisplay:=\"C:\\Program Files (x86)\")"
-    "Extended"=-
-    "HasLUAShield"=""
-    "NoWorkingDirectory"=""
-    "Position"="middle"
-          
-    [HKEY_CLASSES_ROOT\Directory\shell\TakeOwnership\command]
-    @="powershell -windowstyle hidden -command \"$Y = ($null | choice).Substring(1,1); Start-Process cmd -ArgumentList ('/c takeown /f \\\"%1\\\" /r /d ' + $Y + ' && icacls \\\"%1\\\" /grant *S-1-3-4:F /t /c /l /q & pause') -Verb runAs\""
-    "IsolatedCommand"="powershell -windowstyle hidden -command \"$Y = ($null | choice).Substring(1,1); Start-Process cmd -ArgumentList ('/c takeown /f \\\"%1\\\" /r /d ' + $Y + ' && icacls \\\"%1\\\" /grant *S-1-3-4:F /t /c /l /q & pause') -Verb runAs\""
-                
-    [HKEY_CLASSES_ROOT\Drive\shell\runas]
-    @="Take Ownership"
-    "Extended"=-
-    "HasLUAShield"=""
-    "NoWorkingDirectory"=""
-    "Position"="middle"
-    "AppliesTo"="NOT (System.ItemPathDisplay:=\"C:\\\")"
-          
-    [HKEY_CLASSES_ROOT\Drive\shell\runas\command]
-    @="cmd.exe /c takeown /f \"%1\\\" /r /d y && icacls \"%1\\\" /grant *S-1-3-4:F /t /c & Pause"
-    "IsolatedCommand"="cmd.exe /c takeown /f \"%1\\\" /r /d y && icacls \"%1\\\" /grant *S-1-3-4:F /t /c & Pause"]]>
+       
     </File>
     <File path="C:\Windows\Setup\Scripts\currentuser.cmd">
       <![CDATA[
@@ -1024,9 +679,6 @@ reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explore
 reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds" /v ShellFeedsTaskbarViewMode /t REG_DWORD /d 2 /f
 reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds" /v ShellFeedsEnabled /t REG_DWORD /d 0 /f
 reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds" /v EnableFeeds /t REG_DWORD /d 0 /f
-
-:: Hides or Removes Notifications
-reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\PushNotifications" /v ToastEnabled /t REG_DWORD /d 0 /f
 
 :: Disables User Account Sync
 reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Privacy" /v SettingSyncEnabled /t REG_DWORD /d 0 /f
@@ -1090,9 +742,6 @@ reg.exe add "HKEY_CURRENT_USER\Control Panel\Desktop" /v MenuShowDelay /t REG_DW
 :: On Shutdown, Windows will automatically close any running applications
 reg.exe add "HKEY_CURRENT_USER\Control Panel\Desktop" /v AutoEndTasks /t REG_DWORD /d 1 /f
 
-:: Sets the Mouse hover time to 400 milliseconds
-reg.exe add "HKEY_CURRENT_USER\Control Panel\Mouse" /v MouseHoverTime /t REG_SZ /d "400" /f
-
 :: Hides the Meet Now Button on the Taskbar
 reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v HideSCAMeetNow /t REG_DWORD /d 1 /f
 
@@ -1115,10 +764,6 @@ reg.exe add "HKEY_CURRENT_USER\Software\Microsoft\Windows\DWM" /v EnableAeroPeek
 :: Set Registry Keys to Enable End Task With Right Click
 reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarDeveloperSettings /t REG_DWORD /d 1 /f
 reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarEndTask /t REG_DWORD /d 1 /f
-
-:: Disables Notification Tray and Calendar
-reg.exe add "HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Explorer" /v DisableNotificationCenter /t REG_DWORD /d 1 /f
-reg.exe add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\PushNotifications" /v ToastEnabled /t REG_DWORD /d 0 /f
 
 :: Set Classic Right-Click Menu for Windows 11
 reg.exe add "HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /ve /t REG_SZ /d "" /f
@@ -1213,7 +858,7 @@ reg.exe add "HKEY_CURRENT_USER\Control Panel\Desktop" /v "JPEGImportQuality" /t 
 reg.exe add "HKEY_CURRENT_USER\Software\Microsoft\Multimedia\Audio" /v "UserDuckingPreference" /t REG_DWORD /d 3 /f
 
 :: Enables User Account Control (Default Value)
-reg.exe add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v EnableLUA /t REG_DWORD /d 3 /f
+reg.exe add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v EnableLUA /t REG_DWORD /d 1 /f
 
 :: Restart PC to Apply All Changes
 shutdown /r -t 1]]>
