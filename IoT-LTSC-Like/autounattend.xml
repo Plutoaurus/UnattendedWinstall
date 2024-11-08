@@ -617,7 +617,7 @@ reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WorkplaceJoin" /v BlockAAD
     <File path="C:\Windows\Setup\Scripts\contextmenu.reg">
       <![CDATA[
     Windows Registry Editor Version 5.00
-       
+       ]]>
     </File>
     <File path="C:\Windows\Setup\Scripts\currentuser.cmd">
       <![CDATA[
