@@ -807,12 +807,6 @@ reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\
 :: Set Desktop Background Dark Mode Wallpaper
 reg.exe add "HKEY_CURRENT_USER\Control Panel\Desktop" /v Wallpaper /t REG_SZ /d "C:\Windows\Web\Wallpaper\Windows\img19.jpg" /f
 
-:: WINDOWS 10 TASKBAR CUSTOMIZATIONS
-:: Makes Taskbar Transparent in Windows 10
-reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "TaskbarAcrylicOpacity" /t REG_DWORD /d 0 /f
-:: Makes Taskbar Small in Windows 10
-reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "TaskbarSmallIcons" /t REG_DWORD /d 1 /f
-
 :: Don't Update Last Access Time Stamp - This Can Improve File System Performance
 fsutil.exe behavior set disableLastAccess 1
 
