@@ -362,9 +362,6 @@ Where-Object -FilterScript {
   $logFile = "C:\Windows\Setup\Scripts\wintweaks.log"
   Start-Transcript -Path $logFile
   
-  # Enables .NET Framework 3.5
-  DISM /Online /Enable-Feature /FeatureName:NetFx3 /All /Source:X:\sources\sxs /LimitAccess
-  
   # Configure Maximum Password Age in Windows
   net.exe accounts /maxpwage:UNLIMITED
   
@@ -551,7 +548,7 @@ reg.exe add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\System
 reg.exe add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v NetworkThrottlingIndex /t REG_DWORD /d 10 /f
 
 :: Enables NDU (Network Diagnostic Usage) Service on Startup
-reg.exe add "HKLM\SYSTEM\ControlSet001\Services\Ndu" /v Start /t REG_DWORD /d 2 /f
+:: reg.exe add "HKLM\SYSTEM\ControlSet001\Services\Ndu" /v Start /t REG_DWORD /d 2 /f
 
 :: Increases IRP stack size to 30 for the LanmanServer service to Improve Network Performance and Stability
 reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" /v IRPStackSize /t REG_DWORD /d 30 /f
