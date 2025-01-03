@@ -320,7 +320,6 @@ foreach( $file in $Document.unattend.Extensions.File ) {
   'Microsoft.PowerAutomateDesktop';
   'MicrosoftCorporationII.QuickAssist';
   'Microsoft.SkypeApp';
-  'Microsoft.ScreenSketch';
   'Microsoft.MicrosoftSolitaireCollection';
   'Microsoft.MicrosoftStickyNotes';
   'MSTeams';
