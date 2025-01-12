@@ -565,7 +565,9 @@ reg.exe add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\System
 reg.exe add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" /v "Scheduling Category" /t REG_SZ /d "High" /f
 
 :: Fix Managed by your organization in Edge
-reg.exe delete "HKLM\SOFTWARE\Policies\Microsoft\Edge" /f
+taskkill /im msedge.exe /f
+reg delete "HKCU\Software\Policies\Microsoft\Edge" /f
+reg delete "HKLM\Software\Policies\Microsoft\Edge" /f
 
 :: Set Registry Keys to Disable Wifi-Sense
 reg.exe add "HKLM\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting" /v Value /t REG_DWORD /d 0 /f
@@ -852,6 +854,11 @@ reg.exe add "HKEY_CURRENT_USER\Software\Microsoft\Multimedia\Audio" /v "UserDuck
 :: Enables User Account Control (Default Value)
 reg.exe add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v EnableLUA /t REG_DWORD /d 1 /f
 
+:: Fix Managed by your organization in Edge
+taskkill /im msedge.exe /f
+reg delete "HKCU\Software\Policies\Microsoft\Edge" /f
+reg delete "HKLM\Software\Policies\Microsoft\Edge" /f
+	    
 :: Restart PC to Apply All Changes
 shutdown /r -t 1]]>
     </File>
