@@ -625,7 +625,7 @@ reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WorkplaceJoin" /v BlockAAD
     <File path="C:\Windows\Setup\Scripts\currentuser.cmd">
       <![CDATA[
 # Start Transcript to capture script output
-$logFile = "C:\Windows\Setup\Scripts\currentuser.log"
+$logFile = "%USERPROFILE%\Desktop\currentuser.log"
 Start-Transcript -Path $logFile
 :: Disabling the Delivery of Personalized or Suggested Content Like App Suggestions, Tips, and Advertisements in Windows
 reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "ContentDeliveryAllowed" /t REG_DWORD /d 0 /f
