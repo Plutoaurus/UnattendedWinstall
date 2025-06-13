@@ -1,4 +1,4 @@
-# Memory’s Tech Tips’ Unattended Windows Installation
+# Unattended Windows Installation
 
 ## Overview
 
