@@ -302,13 +302,16 @@ foreach( $file in $Document.unattend.Extensions.File ) {
       <![CDATA[
   Get-AppxProvisionedPackage -Online |
   Where-Object -Property 'DisplayName' -In -Value @(
+  'Microsoft.Microsoft3DViewer';
   'Microsoft.BingSearch';
   'Clipchamp.Clipchamp';
   'Microsoft.WindowsAlarms';
   'Microsoft.Windows.DevHome';
   'MicrosoftCorporationII.MicrosoftFamily';
   'Microsoft.WindowsFeedbackHub';
+  'Microsoft.Edge.GameAssist';
   'Microsoft.GetHelp';
+  'Microsoft.Getstarted';
   'microsoft.windowscommunicationsapps';
   'Microsoft.WindowsMaps';
   'Microsoft.ZuneVideo';
@@ -322,10 +325,12 @@ foreach( $file in $Document.unattend.Extensions.File ) {
   'Microsoft.SkypeApp';
   'Microsoft.MicrosoftSolitaireCollection';
   'Microsoft.MicrosoftStickyNotes';
+  'MicrosoftTeams';
   'MSTeams';
   'Microsoft.Getstarted';
   'Microsoft.Todos';
   'Microsoft.WindowsSoundRecorder';
+  'Microsoft.Wallet';
   'Microsoft.BingWeather';
   'Microsoft.ZuneMusic';
   'Microsoft.Xbox.TCUI';
@@ -346,10 +351,18 @@ Get-WindowsCapability -Online |
 Where-Object -FilterScript {
   ($_.Name -split '~')[0] -in @(
     'Browser.InternetExplorer';
+	'Language.Handwriting';
     'MathRecognizer';
+	'Language.Speech';
+	'Language.TextToSpeech';
+	'OneCoreUAP.OneSync';
+	'Hello.Face.18967';
+	'Hello.Face.Migration.18967';
+	'Hello.Face.20134';
     'Microsoft.Windows.PowerShell.ISE';
     'App.Support.QuickAssist';
     'App.StepsRecorder';
+	'Media.WindowsMediaPlayer';
     'Microsoft.Windows.WordPad';
   );
 } | Remove-WindowsCapability -Online]]>
