@@ -186,7 +186,7 @@
         <RunSynchronousCommand wcm:action="add">
           <Order>6</Order>
           <Description>Registry Entry to Execute the HKCU Registry Entry Script the First Time a New User Logs In</Description>
-          <Path>reg.exe add "HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\Runonce" /v "currentuser" /t REG_SZ /d "cmd /c ""C:\Windows\Setup\Scripts\currentuser.cmd > %userprofile%\currentuser.log""" /f</Path>
+          <Path>reg.exe add "HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\Runonce" /v "currentuser" /t REG_SZ /d "cmd /c "C:\Windows\Setup\Scripts\currentuser.cmd"" /f</Path>
         </RunSynchronousCommand>
         <RunSynchronousCommand wcm:action="add">
           <Order>7</Order>
@@ -225,7 +225,7 @@
         <RunSynchronousCommand wcm:action="add">
           <Order>6</Order>
           <Description>Registry Entry to Execute the HKCU Registry Entry Script the First Time a New User Logs In</Description>
-          <Path>reg.exe add "HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\Runonce" /v "currentuser" /t REG_SZ /d "cmd /c ""C:\Windows\Setup\Scripts\currentuser.cmd > %userprofile%\currentuser.log""" /f</Path>
+          <Path>reg.exe add "HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\Runonce" /v "currentuser" /t REG_SZ /d "cmd /c "C:\Windows\Setup\Scripts\currentuser.cmd"" /f</Path>
         </RunSynchronousCommand>
         <RunSynchronousCommand wcm:action="add">
           <Order>7</Order>
@@ -302,6 +302,7 @@ foreach( $file in $Document.unattend.Extensions.File ) {
       <![CDATA[
   Get-AppxProvisionedPackage -Online |
   Where-Object -Property 'DisplayName' -In -Value @(
+  'Microsoft.549981C3F5F10';
   'Microsoft.Microsoft3DViewer';
   'Microsoft.BingSearch';
   'Clipchamp.Clipchamp';
@@ -327,6 +328,7 @@ foreach( $file in $Document.unattend.Extensions.File ) {
   'Microsoft.MicrosoftStickyNotes';
   'MicrosoftTeams';
   'MSTeams';
+  'Microsoft.MixedReality.Portal';
   'Microsoft.Getstarted';
   'Microsoft.Todos';
   'Microsoft.WindowsSoundRecorder';
@@ -365,7 +367,25 @@ Where-Object -FilterScript {
 	'Media.WindowsMediaPlayer';
     'Microsoft.Windows.WordPad';
   );
-} | Remove-WindowsCapability -Online]]>
+} | Remove-WindowsCapability -Online
+
+# This script iterates through a list of Windows features and disables them
+# if they are currently installed and enabled.
+
+# A list of features to check and remove.
+$featuresToRemove = @(
+    'MediaPlayback';
+    'MicrosoftWindowsPowerShellV2Root';
+    'Recall';
+);
+
+# The primary logic.
+$featuresToRemove | ForEach-Object {
+    # Disable the feature and suppress any errors if it's not installed or already disabled.
+    Disable-WindowsOptionalFeature -Online -Remove -NoRestart -ErrorAction SilentlyContinue -FeatureName $_;
+}
+		
+		]]>
     </File>
     <!--Powershell Script to Run Various Tweaks, Most of These are from the Chris Titus Tech Windows Utility (Credit:https://christitus.com/windows-tool/)-->
     <File path="C:\Windows\Setup\Scripts\wintweaks.ps1">
@@ -376,10 +396,31 @@ Where-Object -FilterScript {
 		
   # Configure Maximum Password Age in Windows
   net.exe accounts /maxpwage:UNLIMITED
-  
+		
   # Allow Execution of PowerShell Script Files
   Set-ExecutionPolicy -Scope 'LocalMachine' -ExecutionPolicy 'AllSigned' -Force
 
+  #Stops outlook and dev being installed
+  Remove-Item -LiteralPath 'Registry::HKLM\Software\Microsoft\WindowsUpdate\Orchestrator\UScheduler_Oobe\DevHomeUpdate' -Force -ErrorAction 'SilentlyContinue';
+
+  #Re adds the right click new text file
+  reg.exe add "HKCR\.txt\ShellNew" /v ItemName /t REG_EXPAND_SZ /d "@C:\Windows\system32\notepad.exe,-470" /f;
+  reg.exe add "HKCR\.txt\ShellNew" /v NullFile /t REG_SZ /f;
+  reg.exe add "HKCR\txtfilelegacy" /v FriendlyTypeName /t REG_EXPAND_SZ /d "@C:\Windows\system32\notepad.exe,-469" /f;
+  reg.exe add "HKCR\txtfilelegacy" /ve /t REG_SZ /d "Text Document" /f;
+
+  Remove-Item -LiteralPath 'C:\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\OneDrive.lnk', 'C:\Windows\System32\OneDriveSetup.exe', 'C:\Windows\SysWOW64\OneDriveSetup.exe' -ErrorAction 'Continue';
+
+  #Stops Teams installing
+  reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Communications" /v ConfigureChatAutoInstall /t REG_DWORD /d 0 /f;
+
+  #Disable fast startup
+  reg.exe add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" /v HiberbootEnabled /t REG_DWORD /d 0 /f;
+
+  #Disable Edge autostart
+  reg.exe add "HKLM\Software\Policies\Microsoft\Edge\Recommended" /v BackgroundModeEnabled /t REG_DWORD /d 0 /f;
+  reg.exe add "HKLM\Software\Policies\Microsoft\Edge\Recommended" /v StartupBoostEnabled /t REG_DWORD /d 0 /f;
+		
 	# Attack surface reduction from asrgen.streamlit.app/ASR_Configurator
 	$asrRuleIds = @{
 		"56A863A9-875E-4185-98A7-B882C64B5CE5" = "Block abuse of exploited vulnerable signed drivers";
@@ -777,6 +818,9 @@ reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explore
 
 :: Set File Explorer to Open This PC instead of Quick Access
 reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v LaunchTo /t REG_DWORD /d 1 /f
+
+:: Disables Bing in start bar search
+reg.exe add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /v SearchboxTaskbarMode /t REG_DWORD /d 0 /f
 
 :: Set Display for Performance
 reg.exe add "HKEY_CURRENT_USER\Control Panel\Desktop" /v MenuShowDelay /t REG_DWORD /d 1 /f
